@@ -50,9 +50,9 @@ const Products = ({ category }) => {
     };
 
     const renderProduct = (product, index) => {
-        return <div key={index} className="col-6">
+        return <div key={index} className="col-xs-12 col-sm-6" style={{padding:"0"}}>
             <Card
-                onClick={e => Router.push('/[category]/[id]', `/${(product.category).replace(/ /g, "_")}/${product.id}`)} sx={{ maxWidth: 345, margin: "1em" }}>
+                onClick={e => Router.push('/[category]/[id]', `/${(product.category).replace(/ /g, "_")}/${product.id}`)} sx={{ margin: "1em" }}>
                 <CardMedia
                     component="img"
 
@@ -83,7 +83,7 @@ const Products = ({ category }) => {
                         </Grid>
                         <Grid item xs={12} md={8}>
                             <div class="container">
-                                <div className="row" style={{ marginTop: "5em" }}>
+                                <div className="row">
                                     <Pagination
                                         count={count}
                                         size="large"
