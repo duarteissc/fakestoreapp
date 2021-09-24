@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 const Category = ({cart}) => {
     const router = useRouter();
     const { category } = router.query;
-    console.log("enviado",category)
     return (
         <>
             <Head>

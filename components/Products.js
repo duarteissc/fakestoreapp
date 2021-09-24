@@ -25,15 +25,14 @@ const Products = ({ category }) => {
     let _DATA = usePagination(products, PER_PAGE);
 
     function handleChangePage(e, p, i) {
-        console.log(e, p)
         setPage(p);
         _DATA.jump(p);
     };
 
     const renderProduct = (product, index) => {
         return <div key={index} className="col-xs-12 col-sm-6" style={{ padding: "0" }}>
-            <Card
-                onClick={e => Router.push('/[category]/[id]', `/${(product.category).replace(/ /g, "_")}/${product.id}`)} sx={{ margin: "1em" }}>
+            <Card 
+                onClick={e => Router.push('/[category]/[id]', `/${(product.category).replace(/ /g, "_")}/${product.id}`)} sx={{ margin: "1em", minHeight:340}}>
                 <CardMedia
                     component="img"
 
@@ -43,7 +42,7 @@ const Products = ({ category }) => {
                     alt="green iguana"
                     style={{ height: 200, objectFit: "contain" }}
                 />
-                <CardContent style={{ textAlign: "center" }}>
+                <CardContent style={{ textAlign: "center"}}>
                     <Typography gutterBottom variant="h6" component="div">
                         {product.title}
                     </Typography>
@@ -77,9 +76,7 @@ const Products = ({ category }) => {
                                         /> </Stack>: <></>
                                     }
                                     {_DATA.currentData().map((product, index) => {
-                                        console.log(category, "==", (product.category).replace(/ /g, "_"))
                                         if ((product.category).replace(/ /g, "_") == category) {
-                                            console.log(true)
                                             return renderProduct(product, index)
                                         }
                                         else if (category == "/") {

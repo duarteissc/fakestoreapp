@@ -30,7 +30,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 export default function PrimarySearchAppBar({ cart, type }) {
-  
+
     //Sumamos los productos
     var suma = 0
     cart.forEach(function (elemento, indice) {
@@ -53,6 +53,12 @@ export default function PrimarySearchAppBar({ cart, type }) {
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
+    const SelectCategory = (product) => {
+        setOpenC(!openc);
+        handleMobileMenuClose()
+        Router.push('/[category]', `/${(product.category).replace(/ /g, "_")}`)
+    }
+
 
     const handleMenuClose = () => {
         setAnchorEl(null);
@@ -141,7 +147,7 @@ export default function PrimarySearchAppBar({ cart, type }) {
             onClose={handleMobileMenuClose}
         >
             <MenuItem onClick={() => { Router.push('/') }}>
-                <IconButton  sx={{ display: { xs: 'flex', md: 'flex' } }}
+                <IconButton sx={{ display: { xs: 'flex', md: 'flex' } }}
                     size="large"
                     aria-label="show 17 new notifications"
                     color="inherit">
@@ -171,7 +177,7 @@ export default function PrimarySearchAppBar({ cart, type }) {
                 </IconButton>
                 <span>Profile</span>
             </MenuItem>
-            <List   style={{ width: '100%', bgcolor: 'background.paper' }}
+            <List style={{ width: '100%', bgcolor: 'background.paper' }}
                 component="nav">
                 <ListItemButton onClick={handleClickCategory}>
                     <IconButton>
@@ -182,13 +188,9 @@ export default function PrimarySearchAppBar({ cart, type }) {
                 </ListItemButton>
                 <Collapse in={openc} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        {CategoriasUnicas.map(product => (
-                            <ListItemButton  sx={{ pl: 4 }} key={product.id} onClick={e => {
-                                setOpenC(!openc);
-                                handleMobileMenuClose()
-                                Router.push('/[category]', `/${(product.category).replace(/ /g, "_")}`)}
-                            }>
-                                <ListItemText primary={product.category} />
+                        {CategoriasUnicas.map((product, index) => (
+                            <ListItemButton key={index} sx={{ pl: 4 }} onClick={e => SelectCategory(product)}>
+                                <ListItemText  primary={product.category} />
                             </ListItemButton>
                         ))}
                     </List>
@@ -196,15 +198,6 @@ export default function PrimarySearchAppBar({ cart, type }) {
             </List>
         </Menu >
     );
-    // React.useEffect(() =>{
-    //     var element = document.getElementById("p1");
-    //     var element2 = document.getElementById("p2");
-    //     var element3 = document.getElementById("p3");
-    //     element.classList.remove("mystyle");
-    //     element2.classList.remove("mystyle");
-    //     element3.classList.remove("mystyle");
-    // },[])
-
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="fixed" >

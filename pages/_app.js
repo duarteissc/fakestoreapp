@@ -62,11 +62,8 @@ function MyApp({ Component, pageProps }) {
           }
         );
       }
-
       cambiarCarrito(newCart)
-
     }
-    console.log("cart completo", cart)
   }
     //Delete1Product
   const deleteProductCar = (product) => {
@@ -77,7 +74,6 @@ function MyApp({ Component, pageProps }) {
     }).length > 0;
     if (yaEstaEnCarrito) {
       nuevoCarrito.forEach((productDeCarrito, index) => {
-        console.log("productodecarrito", productDeCarrito)
         if (productDeCarrito.id == product.id && productDeCarrito.quantity > 1) {
           const quantity = nuevoCarrito[index].quantity;
           nuevoCarrito[index] =
