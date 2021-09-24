@@ -58,7 +58,6 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
     }));
     //UseState para mostrar detalle del producto en el carrito
     const [secondary, setSecondary] = useState(false);
-
     const classes = useStyles();
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -70,7 +69,7 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
                         <Typography
                             variant="h5"
                             noWrap
-                            component="div">Articulos</Typography>
+                            component="div">Artículos</Typography>
                         <FormGroup row style={{ margin: "1em" }}>
                             <FormControlLabel
                                 control={

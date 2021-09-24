@@ -4,14 +4,16 @@ import React, { useState } from 'react';
 import Rating from '@mui/material/Rating';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
 const Product = ({ addProductCar }) => {
-    //Sección para buscar el id en la ruta para posterior buscarlo con el producto del context mediante id
+    
+    //Buscamos el id en la ruta para posterior buscarlo con el producto del context mediante id
     const router = useRouter();
     const { products, isLoading } = useAPI();
     const { id } = router.query;
     const product = products.find(product => product.id == id);
 
-    //Aqui deje estilos default para no recrear un page de estylos completo
+    //estilos default para no recrear un page de estilos producto completo
     return (
         <div className="container" style={{
             boxShadow: "rgb(149 157 165 / 20%) 0px 8px 24px",
@@ -66,15 +68,9 @@ const Product = ({ addProductCar }) => {
                                         <p style={{ fontSize: "18px", lineHeight: "24px", color: "#7a7a7a" }}>{product.description}</p>
                                         <div className="row">
                                             <Rating name="read-only" value={product.rating.rate} readOnly />
-                                            <div className="col-md-6">
-
-
-                                            </div>
-
                                         </div>
                                         <div className="product-count" style={{ marginTop: "15px" }} >
                                             <a className="round-black-btn" onClick={() => {
-
                                                 addProductCar(product)
                                             }} style={{
                                                 fontSize: "15px",
@@ -93,10 +89,15 @@ const Product = ({ addProductCar }) => {
                                 </div>
                             </div>
                         </>
-
-                        : <div style={{textAlign:"center", margin:"2em"}}><div>   <Box >
-                            <CircularProgress />
-                        </Box></div><span>Loading...</span></div>
+                        : <div style={{ textAlign: "center", margin: "2em" }}>
+                            <div>
+                                <Box> <CircularProgress /> </Box>
+                            </div>
+                            <Typography
+                                variant="subtitle1"
+                                noWrap
+                                component="div">Loading...</Typography>
+                        </div>
                 }
             </div>
         </div>

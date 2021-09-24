@@ -34,7 +34,7 @@ import StarBorder from '@mui/icons-material/StarBorder';
 import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 export default function PrimarySearchAppBar({ cart, type }) {
 
-    //sumamos los productos
+    //Sumamos los productos
     var suma = 0
     cart.forEach(function (elemento, indice) {
         suma += elemento["quantity"];
@@ -275,7 +275,6 @@ export default function PrimarySearchAppBar({ cart, type }) {
                             <MoreIcon />
                         </IconButton>
                     </Box>
-                    {/* <Button color="inherit">Login</Button> */}
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}

@@ -83,11 +83,16 @@ const Products = ({ category }) => {
                         </Grid>
                     </Grid>
                 </Box>
-
                 :
-                <div style={{textAlign:"center", margin:"2em"}}><div>   <Box>
-                            <CircularProgress />
-                        </Box></div><span>Loading...</span></div>
+                <div style={{ textAlign: "center", margin: "2em" }}>
+                    <div>
+                        <Box> <CircularProgress /> </Box>
+                    </div>
+                    <Typography
+                        variant="subtitle1"
+                        noWrap
+                        component="div">Loading...</Typography>
+                </div>
             }
 
         </>
