@@ -1,37 +1,17 @@
 import Router from 'next/router'
 import { useAPI } from '../context/ProvedorProducts'
-// import { CartPlus } from 'react-bootstrap-icons'
-// import Stock from './Validaciones/Stock';
-
 import React, { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-
-
-import Rating from '@mui/material/Rating';
-import CircularProgress from '@mui/material/CircularProgress';
-
-
-import { Pagination } from "@material-ui/lab";
+import { Card } from '@mui/material';
+import { CardContent } from '@mui/material';
+import { CardMedia } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import { Grid } from '@mui/material';
+import { Rating } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import usePagination from "./Pagination";
-
-const styles =
-{
-
-    media: {
-        height: 200, // 16:9,
-        objectFit: "contain",
-    }
-};
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 const Products = ({ category }) => {
 
@@ -40,17 +20,18 @@ const Products = ({ category }) => {
 
     let [page, setPage] = useState(1);
     const PER_PAGE = 10;
-    
-    var count = Math.ceil(products.length / PER_PAGE);
-    var _DATA = usePagination(products, PER_PAGE);
 
-    const handleChange = (e, p) => {
+    let count = Math.ceil(products.length / PER_PAGE);
+    let _DATA = usePagination(products, PER_PAGE);
+
+    function handleChangePage(e, p, i) {
+        console.log(e, p)
         setPage(p);
         _DATA.jump(p);
     };
 
     const renderProduct = (product, index) => {
-        return <div key={index} className="col-xs-12 col-sm-6" style={{padding:"0"}}>
+        return <div key={index} className="col-xs-12 col-sm-6" style={{ padding: "0" }}>
             <Card
                 onClick={e => Router.push('/[category]/[id]', `/${(product.category).replace(/ /g, "_")}/${product.id}`)} sx={{ margin: "1em" }}>
                 <CardMedia
@@ -60,7 +41,7 @@ const Products = ({ category }) => {
                     max-width=" 100%"
                     image={product.image}
                     alt="green iguana"
-                    style={styles.media}
+                    style={{ height: 200, objectFit: "contain" }}
                 />
                 <CardContent style={{ textAlign: "center" }}>
                     <Typography gutterBottom variant="h6" component="div">
@@ -77,21 +58,24 @@ const Products = ({ category }) => {
         <>
 
             {!isLoading ?
-                <Box sx={{ flexGrow: 1 }}>
+                <Box sx={{ flexGrow: 1 }} style={{ marginTop: "5em" }}>
                     <Grid container spacing={2}>
                         <Grid item xs={0} md={2}>
                         </Grid>
                         <Grid item xs={12} md={8}>
-                            <div class="container">
+                            <div className="container">
                                 <div className="row">
-                                    <Pagination
-                                        count={count}
-                                        size="large"
-                                        page={page}
-                                        variant="outlined"
-                                        shape="rounded"
-                                        onChange={handleChange}
-                                    />
+                                    {category == "/" ?
+                                     <Stack spacing={2}>
+                                        <Pagination
+                                            count={count}
+                                            // size="large"
+                                            page={page}
+                                            variant="outlined"
+                                            shape="rounded"
+                                            onChange={handleChangePage}
+                                        /> </Stack>: <></>
+                                    }
                                     {_DATA.currentData().map((product, index) => {
                                         console.log(category, "==", (product.category).replace(/ /g, "_"))
                                         if ((product.category).replace(/ /g, "_") == category) {
@@ -103,14 +87,17 @@ const Products = ({ category }) => {
                                         }
                                     })
                                     }
-                                    <Pagination
-                                        count={count}
-                                        size="large"
-                                        page={page}
-                                        variant="outlined"
-                                        shape="rounded"
-                                        onChange={handleChange}
-                                    />
+                                    {category == "/" ?
+                                        <Stack spacing={2}>
+                                        <Pagination
+                                            count={count}
+                                            // size="large"
+                                            page={page}
+                                            variant="outlined"
+                                            shape="rounded"
+                                            onChange={handleChangePage}
+                                        /></Stack> : <></>
+                                    }
                                 </div>
                             </div>
                         </Grid>
@@ -120,7 +107,7 @@ const Products = ({ category }) => {
                     </Grid>
                 </Box>
                 :
-                <div style={{ textAlign: "center", margin: "2em" }}>
+                <div style={{ textAlign: "center", marginTop: "5em" }}>
                     <div>
                         <Box> <CircularProgress /> </Box>
                     </div>

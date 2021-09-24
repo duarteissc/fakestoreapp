@@ -1,26 +1,25 @@
 import Router from 'next/router'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 import { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 //Grid
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
     padding: theme.spacing(1),
@@ -35,32 +34,10 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
     });
 
     //Styles
-    const useStyles = makeStyles((theme) => ({
-        root: {
-            width: '100%',
-        },
-        button: {
-            marginTop: theme.spacing(1),
-            marginRight: theme.spacing(1),
-        },
-        actionsContainer: {
-            marginBottom: theme.spacing(2),
-        },
-        resetContainer: {
-            padding: theme.spacing(3),
-        },
-        demo: {
-            backgroundColor: theme.palette.background.paper,
-        },
-        title: {
-            margin: theme.spacing(4, 0, 2),
-        },
-    }));
     //UseState para mostrar detalle del producto en el carrito
     const [secondary, setSecondary] = useState(false);
-    const classes = useStyles();
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }}  style={{ marginTop: "5em" }}>
             <Grid container spacing={2}>
                 <Grid item xs={0} md={2}>
                 </Grid>
@@ -83,7 +60,7 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
                         </FormGroup>
                     </div>
                     <Grid item >
-                        <div className={classes.demo}>
+                        <div >
                             <List>
                                 {cart.map((product, index) => {
                                     return <Item key={index} style={{ margin: "1em", paddingBottom: "2.8em" }}>
@@ -161,9 +138,7 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
                             </div>
                         </div>
                     </div>
-
                 </Grid>
-
                 <Grid item xs={0} md={2}>
                 </Grid>
             </Grid>

@@ -1,39 +1,36 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MoreIcon from '@mui/icons-material/MoreVert';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { AppBar } from '@mui/material/';
+import { Box } from '@mui/material/';
+import { Toolbar } from '@mui/material/';
+import { IconButton } from '@mui/material/';
+import { Typography } from '@mui/material/';
+import { Badge } from '@mui/material/';
+import { MenuItem } from '@mui/material';
+import { Menu } from '@mui/material/';
+import { FormHelperText } from '@mui/material/';
+import { FormControl } from '@mui/material/';
+import { Select } from '@mui/material/';
+import { List } from '@mui/material/';
+import { ListItemButton } from '@mui/material/';
+import { ListItemText } from '@mui/material/';
+import { Collapse } from '@mui/material/'
+
+import Home from '@mui/icons-material/Home';
 
 import { useAPI } from '../context/ProvedorProducts'
-import Router from 'next/router';
+import Router from 'next/router'
 
-import FormHelperText from '@mui/material/FormHelperText';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import HomeIcon from '@mui/icons-material/Home';
-import { Button } from '@material-ui/core';
 
-import List from '@mui/material/List';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Collapse from '@mui/material/Collapse';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
-import SendIcon from '@mui/icons-material/Send';
+
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
-import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
-export default function PrimarySearchAppBar({ cart, type }) {
+import AutoAwesomeMosaic from '@mui/icons-material/AutoAwesomeMosaic';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
+
+export default function PrimarySearchAppBar({ cart, type }) {
+  
     //Sumamos los productos
     var suma = 0
     cart.forEach(function (elemento, indice) {
@@ -99,7 +96,6 @@ export default function PrimarySearchAppBar({ cart, type }) {
     const handleClickCategory = () => {
         setOpenC(!openc);
     };
-    //Renderizamos el product para no repetir codigo
 
 
     //Remover deplicados de las categorias existentes
@@ -116,18 +112,20 @@ export default function PrimarySearchAppBar({ cart, type }) {
         }
         return newArray;
     }
-    //Guardamos la categoria
+    // //Guardamos la categoria
     const [categoryavailable, setCategory] = React.useState('');
 
     const handleChange = (event) => {
         setCategory(event.target.value);
     };
 
+
     //Llamamos el const
     var CategoriasUnicas = removeDuplicates();
-
+    //render mobile navbar
     const renderMobileMenu = (
         <Menu
+
             anchorEl={mobileMoreAnchorEl}
             anchorOrigin={{
                 vertical: 'top',
@@ -143,23 +141,19 @@ export default function PrimarySearchAppBar({ cart, type }) {
             onClose={handleMobileMenuClose}
         >
             <MenuItem onClick={() => { Router.push('/') }}>
-                <IconButton
+                <IconButton  sx={{ display: { xs: 'flex', md: 'flex' } }}
                     size="large"
                     aria-label="show 17 new notifications"
-                    color="inherit"
-                >
-
-                    <HomeIcon />
-                </IconButton>
+                    color="inherit">
+                    <Home />
+                </IconButton >
                 <span>Inicio</span>
             </MenuItem>
-
             <MenuItem onClick={() => Router.push('/cart')}>
                 <IconButton
                     size="large"
                     aria-label="show 17 new notifications"
-                    color="inherit"
-                >
+                    color="inherit">
                     <Badge badgeContent={suma} color="error">
                         <ShoppingCartIcon />
                     </Badge>
@@ -172,18 +166,16 @@ export default function PrimarySearchAppBar({ cart, type }) {
                     aria-label="account of current user"
                     aria-controls="primary-search-account-menu"
                     aria-haspopup="true"
-                    color="inherit"
-                >
+                    color="inherit">
                     <AccountCircle />
                 </IconButton>
                 <span>Profile</span>
             </MenuItem>
-
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+            <List   style={{ width: '100%', bgcolor: 'background.paper' }}
                 component="nav">
                 <ListItemButton onClick={handleClickCategory}>
                     <IconButton>
-                        <AutoAwesomeMosaicIcon style={{ color: "#000" }} />
+                        <AutoAwesomeMosaic style={{ color: "#000" }} />
                     </IconButton>
                     <ListItemText primary="Categorias" />
                     {openc ? <ExpandLess /> : <ExpandMore />}
@@ -191,7 +183,11 @@ export default function PrimarySearchAppBar({ cart, type }) {
                 <Collapse in={openc} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
                         {CategoriasUnicas.map(product => (
-                            <ListItemButton sx={{ pl: 4 }} key={product.id} onClick={e => Router.push('/[category]', `/${(product.category).replace(/ /g, "_")}`)}>
+                            <ListItemButton  sx={{ pl: 4 }} key={product.id} onClick={e => {
+                                setOpenC(!openc);
+                                handleMobileMenuClose()
+                                Router.push('/[category]', `/${(product.category).replace(/ /g, "_")}`)}
+                            }>
                                 <ListItemText primary={product.category} />
                             </ListItemButton>
                         ))}
@@ -200,26 +196,31 @@ export default function PrimarySearchAppBar({ cart, type }) {
             </List>
         </Menu >
     );
+    // React.useEffect(() =>{
+    //     var element = document.getElementById("p1");
+    //     var element2 = document.getElementById("p2");
+    //     var element3 = document.getElementById("p3");
+    //     element.classList.remove("mystyle");
+    //     element2.classList.remove("mystyle");
+    //     element3.classList.remove("mystyle");
+    // },[])
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="fixed" >
                 <Toolbar>
-                   
                     <Typography
                         variant="h6"
                         noWrap
                         component="div"
                         sx={{ display: { xs: 'block', sm: 'block' } }}
-                        onClick={() => { Router.push('/') }}
-                    >
+                        onClick={() => { Router.push('/') }}>
                         FakeStore
                     </Typography>
-
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         {type != 0 ?
                             <FormControl sx={{ m: 1, minWidth: 120, marginRight: "2em" }}>
-
                                 <Select style={{ color: "white" }}
                                     value={categoryavailable}
                                     onChange={handleChange}
@@ -234,7 +235,6 @@ export default function PrimarySearchAppBar({ cart, type }) {
                                         Todas
                                     </MenuItem>
                                     {CategoriasUnicas.map(product => (
-
                                         <MenuItem value={product.id} key={product.id} onClick={e => Router.push('/[category]', `/${(product.category).replace(/ /g, "_")}`)}>{product.category}</MenuItem>
                                     ))
                                     }
@@ -272,7 +272,7 @@ export default function PrimarySearchAppBar({ cart, type }) {
                             onClick={handleMobileMenuOpen}
                             color="inherit"
                         >
-                            <MoreIcon />
+                            <ExpandMore />
                         </IconButton>
                     </Box>
                 </Toolbar>

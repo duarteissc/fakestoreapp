@@ -1,7 +1,6 @@
 import Head from 'next/head'
-// import Header from '../components/Navbar'
-import Products from '../components/Products'
 import NavBar from '../components/NavBar'
+import Products from '../components/Products'
 const IndexPage = ({cart}) => {
   return (
 
@@ -15,7 +14,7 @@ const IndexPage = ({cart}) => {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossOrigin="anonymous"></script>
         <link rel="icon" href="/descarga.png" />
       </Head>
-      <NavBar cart={cart} style={{marginBottom:"4em"}}/>
+      <NavBar cart={cart} />
       <Products category={"/"} />
     </>
   )

@@ -18,7 +18,7 @@ const Product = ({ addProductCar }) => {
         <div className="container" style={{
             boxShadow: "rgb(149 157 165 / 20%) 0px 8px 24px",
             backgroundColor: "#fff",
-            marginTop: "1rem", marginBottom: "1rem"
+            marginTop: "5rem", marginBottom: "1rem"
         }} >
             <div className="row">
                 {
@@ -89,7 +89,8 @@ const Product = ({ addProductCar }) => {
                                 </div>
                             </div>
                         </>
-                        : <div style={{ textAlign: "center", margin: "2em" }}>
+                        :
+                        <div style={{ textAlign: "center" }}>
                             <div>
                                 <Box> <CircularProgress /> </Box>
                             </div>
