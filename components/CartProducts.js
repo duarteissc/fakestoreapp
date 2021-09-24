@@ -48,7 +48,7 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
         },
         resetContainer: {
             padding: theme.spacing(3),
-        },//Los de la lista aqui
+        },
         demo: {
             backgroundColor: theme.palette.background.paper,
         },
@@ -82,9 +82,6 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
                             />
                         </FormGroup>
                         <Grid item >
-                            <Typography variant="h6" component={'div'} className={classes.title}>
-                                Articulos
-                            </Typography>
                             <div className={classes.demo}>
                                 <List>
                                     {cart.map((product, index) => {

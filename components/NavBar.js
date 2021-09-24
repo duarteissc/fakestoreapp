@@ -18,6 +18,20 @@ import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import HomeIcon from '@mui/icons-material/Home';
+import { Button } from '@material-ui/core';
+
+import List from '@mui/material/List';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Collapse from '@mui/material/Collapse';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import SendIcon from '@mui/icons-material/Send';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import StarBorder from '@mui/icons-material/StarBorder';
+import AutoAwesomeMosaicIcon from '@mui/icons-material/AutoAwesomeMosaic';
 export default function PrimarySearchAppBar({ cart, type }) {
 
     //sumamos los productos
@@ -79,7 +93,39 @@ export default function PrimarySearchAppBar({ cart, type }) {
     // prop material-Ui
     const mobileMenuId = 'primary-search-account-menu-mobile';
 
+    //Categorias grid móvil
+    const [openc, setOpenC] = React.useState(false);
+
+    const handleClickCategory = () => {
+        setOpenC(!openc);
+    };
     //Renderizamos el product para no repetir codigo
+
+
+    //Remover deplicados de las categorias existentes
+    const removeDuplicates = () => {
+        var newArray = [];
+        var lookupObject = {};
+
+        for (var i in products) {
+            lookupObject[products[i]["category"]] = products[i];
+        }
+
+        for (i in lookupObject) {
+            newArray.push(lookupObject[i]);
+        }
+        return newArray;
+    }
+    //Guardamos la categoria
+    const [categoryavailable, setCategory] = React.useState('');
+
+    const handleChange = (event) => {
+        setCategory(event.target.value);
+    };
+
+    //Llamamos el const
+    var CategoriasUnicas = removeDuplicates();
+
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -96,17 +142,18 @@ export default function PrimarySearchAppBar({ cart, type }) {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem    onClick={() => { Router.push('/') }}>
+            <MenuItem onClick={() => { Router.push('/') }}>
                 <IconButton
                     size="large"
                     aria-label="show 17 new notifications"
                     color="inherit"
                 >
-                    
-                        <HomeIcon />
+
+                    <HomeIcon />
                 </IconButton>
                 <span>Inicio</span>
             </MenuItem>
+
             <MenuItem onClick={() => Router.push('/cart')}>
                 <IconButton
                     size="large"
@@ -131,35 +178,44 @@ export default function PrimarySearchAppBar({ cart, type }) {
                 </IconButton>
                 <span>Profile</span>
             </MenuItem>
-        </Menu>
+
+            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                component="nav">
+                <ListItemButton onClick={handleClickCategory}>
+                    <IconButton>
+                        <AutoAwesomeMosaicIcon style={{ color: "#000" }} />
+                    </IconButton>
+                    <ListItemText primary="Categorias" />
+                    {openc ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={openc} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+                        <ListItemButton sx={{ pl: 4 }} onClick={e => Router.push('/')}>
+                            <ListItemText primary="Inicio" />
+                        </ListItemButton>
+                        {CategoriasUnicas.map(product => (
+                            <ListItemButton sx={{ pl: 4 }} key={product.id} onClick={e => Router.push('/[category]', `/${(product.category).replace(/ /g, "_")}`)}>
+                                <ListItemText primary={product.category} />
+                            </ListItemButton>
+                        ))}
+                    </List>
+                </Collapse>
+            </List>
+        </Menu >
     );
-    //Remover deplicados de las categorias existentes
-    const removeDuplicates = () => {
-        var newArray = [];
-        var lookupObject = {};
-
-        for (var i in products) {
-            lookupObject[products[i]["category"]] = products[i];
-        }
-
-        for (i in lookupObject) {
-            newArray.push(lookupObject[i]);
-        }
-        return newArray;
-    }
-    //Guardamos la categoria
-    const [categoryavailable, setCategory] = React.useState('');
-
-    const handleChange = (event) => {
-        setCategory(event.target.value);
-    };
-
-    //Llamamos el const
-    var CategoriasUnicas = removeDuplicates();
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="open drawer"
+                        sx={{ mr: 2 }}
+                    >
+                        FakeShop
+                    </IconButton>
                     <Typography
                         variant="h6"
                         noWrap
@@ -230,6 +286,7 @@ export default function PrimarySearchAppBar({ cart, type }) {
                             <MoreIcon />
                         </IconButton>
                     </Box>
+                    {/* <Button color="inherit">Login</Button> */}
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
