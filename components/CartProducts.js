@@ -58,7 +58,7 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
     }));
     //UseState para mostrar detalle del producto en el carrito
     const [secondary, setSecondary] = useState(false);
-    
+
     const classes = useStyles();
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -66,11 +66,12 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
                 <Grid item xs={0} md={2}>
                 </Grid>
                 <Grid item xs={12} md={8}>
-                    <Item style={{ margin: "1em", padding: "1em" }}>
-                        <div style={{ padding: "0", marginBottom: "15px", marginTop: "15px" }}>
-                            <span style={{ fontSize: "calc(1em + 1vw)" }}>Carrito de compras</span>
-                        </div>
-                        <FormGroup row>
+                    <div style={{ margin: "1.5em" }}>
+                        <Typography
+                            variant="h5"
+                            noWrap
+                            component="div">Articulos</Typography>
+                        <FormGroup row style={{ margin: "1em" }}>
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -78,14 +79,16 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
                                         onChange={(event) => setSecondary(event.target.checked)}
                                     />
                                 }
-                                label="Ver detalles"
+                                label="Ver detalle"
                             />
                         </FormGroup>
-                        <Grid item >
-                            <div className={classes.demo}>
-                                <List>
-                                    {cart.map((product, index) => {
-                                        return <div key={index} style={{ marginBottom: "3em" }}><ListItem >
+                    </div>
+                    <Grid item >
+                        <div className={classes.demo}>
+                            <List>
+                                {cart.map((product, index) => {
+                                    return <Item key={index} style={{ margin: "1em", paddingBottom: "2.8em" }}>
+                                        <ListItem >
                                             <ListItemAvatar>
                                                 <Avatar src={product.image} />
                                             </ListItemAvatar>
@@ -94,7 +97,7 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
                                                 secondary={secondary ? <><div>{product.quantity + " x $" + product.price.toFixed(2) + " = $" + product.total.toFixed(2)}</div></> : null}
                                             />
 
-                                            <div style={{ marginTop: "2em" }}><ListItemSecondaryAction style={{ marginTop: "3em" }}>
+                                          <ListItemSecondaryAction style={{ marginTop: "3em" }}>
                                                 $ {product.total.toFixed(2)}
                                                 <IconButton edge="end" aria-label="delete" onClick={() => {
                                                     deleteProductsCar(product)
@@ -113,44 +116,53 @@ const CartProducts = ({ cart, addProductCar, deleteProductsCar, deleteProductCar
                                                 }}>
                                                     <AddIcon />
                                                 </IconButton>
-                                            </ListItemSecondaryAction></div>
+                                            </ListItemSecondaryAction>
                                         </ListItem>
-                                        </div>
+                                    </Item>
 
-                                    })
-                                    }
-                                </List>
-                                <div style={{ textAlign: "right", margin: "1em" }}>
-                                    <div>Envio: $ 0.00</div>
-                                    <div>Total: $ {suma.toFixed(2)}</div>
-                                </div>
+                                })
+                                }
+                            </List>
+                            <div style={{ textAlign: "right", margin: "1em" }}>
+                                <div>
+                                    <Typography
+                                        variant="subtitle1"
+                                        noWrap
+                                        component="div">Envio: $ 0.00</Typography></div>
                             </div>
-                        </Grid>
-                        <div className="row" style={{ marginTop: "10px" }}>
-                            <div className="col-12" style={{ padding: "0" }}>
-                                <div style={{ textAlign: "right" }}>
-                                    <a style={{
-                                        textAlign: "center",
-                                        display: "inline-block",
-                                        alignItems: " center",
-                                        justifyContent: " center",
-                                        width: " 50%",
-                                        color: " #fff",
-                                        background: " #1B241D",
-                                        padding: " 1.4em 0",
-                                        borderRadius: "0",
-                                        transition: " background 0.3s ease",
-                                        textDecoration: "none",
-                                        lineHeight: "1",
-                                        fontSize: " 14px",
-                                        fontWeight: "700",
-                                        textTransform: " uppercase",
-                                        letterSpacing: " 2px"
-                                    }} onClick={() => Router.push('/')}>Continuar</a>
-                                </div>
+                            <div style={{ textAlign: "right", margin: "1em" }}>
+                                <div> <Typography
+                                    variant="subtitle1"
+                                    noWrap
+                                    component="div">Total: $ {suma.toFixed(2)}</Typography></div>
                             </div>
                         </div>
-                    </Item>
+                    </Grid>
+                    <div className="row" style={{ marginTop: "10px" }}>
+                        <div className="col-12" style={{ padding: "0" }}>
+                            <div style={{ textAlign: "right" }}>
+                                <a style={{
+                                    textAlign: "center",
+                                    display: "inline-block",
+                                    alignItems: " center",
+                                    justifyContent: " center",
+                                    width: " 50%",
+                                    color: " #fff",
+                                    background: " #1B241D",
+                                    padding: " 1.4em 0",
+                                    borderRadius: "0",
+                                    transition: " background 0.3s ease",
+                                    textDecoration: "none",
+                                    lineHeight: "1",
+                                    fontSize: " 14px",
+                                    fontWeight: "700",
+                                    textTransform: " uppercase",
+                                    letterSpacing: " 2px"
+                                }} onClick={() => Router.push('/')}>Continuar</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </Grid>
 
                 <Grid item xs={0} md={2}>

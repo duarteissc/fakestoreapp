@@ -190,9 +190,6 @@ export default function PrimarySearchAppBar({ cart, type }) {
                 </ListItemButton>
                 <Collapse in={openc} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <ListItemButton sx={{ pl: 4 }} onClick={e => Router.push('/')}>
-                            <ListItemText primary="Inicio" />
-                        </ListItemButton>
                         {CategoriasUnicas.map(product => (
                             <ListItemButton sx={{ pl: 4 }} key={product.id} onClick={e => Router.push('/[category]', `/${(product.category).replace(/ /g, "_")}`)}>
                                 <ListItemText primary={product.category} />
@@ -207,7 +204,7 @@ export default function PrimarySearchAppBar({ cart, type }) {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
+                    <IconButton onClick={e => Router.push('/')}
                         size="large"
                         edge="start"
                         color="inherit"
@@ -223,7 +220,7 @@ export default function PrimarySearchAppBar({ cart, type }) {
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                         onClick={() => { Router.push('/') }}
                     >
-                        Fake Shop
+                        FakeShop
                     </Typography>
 
                     <Box sx={{ flexGrow: 1 }} />
