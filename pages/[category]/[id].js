@@ -13,7 +13,7 @@ const product = ({ addProductCar, cart }) => {
                 <link rel="icon" href="/descarga.png" />
             </Head>
 
-            <NavBar cart={cart} style={{paddingBottom:"4em"}}/>
+            <NavBar cart={cart} style={{marginBottom:"4em"}}/>
             <Product addProductCar={addProductCar} />
 
         </>

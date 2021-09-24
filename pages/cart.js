@@ -13,7 +13,7 @@ const Cart = ({ cart, addProductCar, deleteProductsCar, deleteProductCar }) => {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossOrigin="anonymous"></script>
         <link rel="icon" href="/descarga.png" />
       </Head>
-      <NavBar cart={cart} type={0} style={{paddingBottom:"4em"}}/>
+      <NavBar cart={cart} type={0} style={{marginBottom:"4em"}}/>
 
       {cart.length > 0 ?
         //Carrito con productos
