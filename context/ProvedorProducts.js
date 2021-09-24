@@ -5,7 +5,7 @@ const ContextProducts = createContext();
 function ProvedorProducts({ children }) {
 
     //productos 
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([0]);
 
     //Fetch cargado
     const [isLoading, setIsLoading] = useState(true);

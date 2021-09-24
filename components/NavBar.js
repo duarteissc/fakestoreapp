@@ -202,7 +202,7 @@ export default function PrimarySearchAppBar({ cart, type }) {
     );
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="fixed" >
                 <Toolbar>
                    
                     <Typography

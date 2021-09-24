@@ -3,7 +3,7 @@ import { useAPI } from '../context/ProvedorProducts'
 // import { CartPlus } from 'react-bootstrap-icons'
 // import Stock from './Validaciones/Stock';
 
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -20,6 +20,10 @@ import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
 import CircularProgress from '@mui/material/CircularProgress';
 
+
+import { Pagination } from "@material-ui/lab";
+import usePagination from "./Pagination";
+
 const styles =
 {
 
@@ -30,7 +34,20 @@ const styles =
 };
 
 const Products = ({ category }) => {
+
+
     const { products, isLoading } = useAPI();
+
+    let [page, setPage] = useState(1);
+    const PER_PAGE = 10;
+    
+    var count = Math.ceil(products.length / PER_PAGE);
+    var _DATA = usePagination(products, PER_PAGE);
+
+    const handleChange = (e, p) => {
+        setPage(p);
+        _DATA.jump(p);
+    };
 
     const renderProduct = (product, index) => {
         return <div key={index} className="col-6">
@@ -58,24 +75,43 @@ const Products = ({ category }) => {
     }
     return (
         <>
+
             {!isLoading ?
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={0} md={2}>
                         </Grid>
                         <Grid item xs={12} md={8}>
-                            <div className="row">
-                                {products.map((product, index) => {
-                                    console.log(category, "==", (product.category).replace(/ /g, "_"))
-                                    if ((product.category).replace(/ /g, "_") == category) {
-                                        console.log(true)
-                                        return renderProduct(product, index)
+                            <div class="container">
+                                <div className="row" style={{ marginTop: "5em" }}>
+                                    <Pagination
+                                        count={count}
+                                        size="large"
+                                        page={page}
+                                        variant="outlined"
+                                        shape="rounded"
+                                        onChange={handleChange}
+                                    />
+                                    {_DATA.currentData().map((product, index) => {
+                                        console.log(category, "==", (product.category).replace(/ /g, "_"))
+                                        if ((product.category).replace(/ /g, "_") == category) {
+                                            console.log(true)
+                                            return renderProduct(product, index)
+                                        }
+                                        else if (category == "/") {
+                                            return renderProduct(product, index)
+                                        }
+                                    })
                                     }
-                                    else if (category == "/") {
-                                        return renderProduct(product, index)
-                                    }
-                                })
-                                }
+                                    <Pagination
+                                        count={count}
+                                        size="large"
+                                        page={page}
+                                        variant="outlined"
+                                        shape="rounded"
+                                        onChange={handleChange}
+                                    />
+                                </div>
                             </div>
                         </Grid>
 
@@ -94,6 +130,8 @@ const Products = ({ category }) => {
                         component="div">Loading...</Typography>
                 </div>
             }
+
+
 
         </>
     )
