@@ -16,15 +16,12 @@ module.exports = {
     const posts = await sendGetProducts();
     const paths = {
       '/': { page: '/' },
-      '/products': { page: '/products' },
+      '/cart': { page: '/cart' },
     }
 
 
     // React dom, routes pre cargadas
 
-    posts.forEach((product) => {
-      paths[`/product/${product.id}`] = { page: '/product/[id]' };
-    });
 
     posts.forEach((product) => {
       paths[`/${(product.category).replace(/ /g, "_")}/${product.id}`] = { page: '/[category]/[id]' };

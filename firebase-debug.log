@@ -1,0 +1,69 @@
+[debug] [2021-09-24T00:20:48.531Z] ----------------------------------------------------------------------
+[debug] [2021-09-24T00:20:48.533Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Duarte\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-09-24T00:20:48.533Z] CLI Version:   9.16.5
+[debug] [2021-09-24T00:20:48.533Z] Platform:      win32
+[debug] [2021-09-24T00:20:48.533Z] Node Version:  v14.16.0
+[debug] [2021-09-24T00:20:48.534Z] Time:          Thu Sep 23 2021 19:20:48 GMT-0500 (Central Daylight Time)
+[debug] [2021-09-24T00:20:48.534Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-09-24T00:20:48.541Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-09-24T00:20:48.542Z] > authorizing via signed-in user (duarte.issc@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Duarte\Documents\FakeStore\fakestoreapp
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2021-09-24T00:20:53.358Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2021-09-24T00:20:53.733Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2021-09-24T00:20:53.733Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project fakeapp-2021 (FakeAPP2020) 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2021-09-24T00:21:06.311Z] Error: EISDIR: illegal operation on a directory, open 'C:\Users\Duarte\Documents\FakeStore\fakestoreapp\out\404.html'
+    at Object.openSync (fs.js:476:3)
+    at Object.writeFileSync (fs.js:1467:35)
+    at Object.createFileSync (C:\Users\Duarte\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\fs-extra\lib\ensure\file.js:43:6)
+    at Config.writeProjectFile (C:\Users\Duarte\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:144:12)
+    at C:\Users\Duarte\AppData\Roaming\npm\node_modules\firebase-tools\lib\config.js:162:22
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2021-09-24T00:25:30.644Z] ----------------------------------------------------------------------
+[debug] [2021-09-24T00:25:30.645Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Duarte\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-09-24T00:25:30.646Z] CLI Version:   9.16.5
+[debug] [2021-09-24T00:25:30.646Z] Platform:      win32
+[debug] [2021-09-24T00:25:30.646Z] Node Version:  v14.16.0
+[debug] [2021-09-24T00:25:30.647Z] Time:          Thu Sep 23 2021 19:25:30 GMT-0500 (Central Daylight Time)
+[debug] [2021-09-24T00:25:30.647Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-09-24T00:25:30.653Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-09-24T00:25:30.653Z] > authorizing via signed-in user (duarte.issc@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Duarte\Documents\FakeStore\fakestoreapp
+
